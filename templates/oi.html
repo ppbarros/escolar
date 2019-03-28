@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bem vindo</title>
+</head>
+<body>
+{% if nome %}
+    <h1>Bem vindo {{nome}}</h1>
+{% else %}
+    <h1>Nome não informado</h1>
+{% endif %}
+<table border="1">
+    <tr>
+    <td>Disciplina</td>
+    <td>Nota 1</td>
+    <td>Nota 2</td>
+    <td>Nota 3</td>
+    </tr>
+    {% for c in disciplinas %}
+    <tr>
+        <td><a href="/detalhar/{{c[0]}}">{{c[0]}}</a></td>
+        <td>{{c[1]}}</td>
+        <td>{{c[2]}}</td>
+        <td>{{c[3]}}</td>
+    </tr>
+    {% endfor %}
+
+</table>
+</body>
+</html>
