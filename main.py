@@ -1,7 +1,14 @@
 from flask import Flask, request, render_template
-from bdsimulado import *
+from flaskext.mysql import MySQL
+from bd import *
 
 app = Flask(__name__)
+mysql = MySQL()
+mysql.init_app(app)
+
+app.config['MYSQL_DATABASE_USER'] = 'root'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'root'
+app.config['MYSQL_DATABASE_DB'] = 'escolar'
 
 @app.route('/')
 def principal():
@@ -13,7 +20,7 @@ def autentication():
         user = request.form.get('user')
         password = request.form.get('password')
 
-        if validar_login(user, password):
+        if get_idlogin(user, password):
             return render_template('oi.html', nome=user, disciplinas=get_disciplinas(user))
         else:
             return render_template('index.html', erro='Login/Senha Incorretos!')
