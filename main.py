@@ -20,10 +20,16 @@ def autentication():
         user = request.form.get('user')
         password = request.form.get('password')
 
-        if get_idlogin(user, password):
-            return render_template('oi.html', nome=user, disciplinas=get_disciplinas(user))
-        else:
+        cursor = mysql.get_db().cursor()
+
+        idlogin = get_idlogin(cursor, user, password)
+
+        if idlogin == None:
             return render_template('index.html', erro='Login/Senha Incorretos!')
+        else:
+            cursor = mysql.get_db().cursor()
+
+            return render_template('oi.html', )
     else:
         return render_template('index.html', erro='Método Incorreto. Use POST!')
 
