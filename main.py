@@ -24,18 +24,21 @@ def autentication():
 
         idlogin = get_idlogin(cursor, user, password)
 
-        if idlogin == None:
+        if idlogin is None:
             return render_template('index.html', erro='Login/Senha Incorretos!')
         else:
             cursor = mysql.get_db().cursor()
 
-            return render_template('oi.html', )
+            return render_template('oi.html', nome=user, disciplinas=get_notas(cursor, idlogin[0]))
     else:
         return render_template('index.html', erro='Método Incorreto. Use POST!')
 
 @app.route('/detalhar/<disciplina>')
 def detalhar(disciplina):
-    return render_template('detalhes.html', disciplina=disciplina, detalhes=get_detalhes(disciplina))
+    cursor = mysql.get_db().cursor()
+
+    return render_template('detalhes.html', detalhes=get_detalhes(cursor, disciplina))
+
 
 if __name__ == "__main__":
     app.run(debug=True)

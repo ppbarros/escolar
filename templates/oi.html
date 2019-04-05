@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Bem vindo</title>
+    <title>Bem vindo {{nome}}</title>
 </head>
 <body>
 {% if nome %}
@@ -19,10 +19,10 @@
     </tr>
     {% for c in disciplinas %}
     <tr>
-        <td><a href="/detalhar/{{c[0]}}">{{c[0]}}</a></td>
-        <td>{{c[1]}}</td>
+        <td><a href="/detalhar/{{c[0]}}">{{c[1]}}</a></td>
         <td>{{c[2]}}</td>
         <td>{{c[3]}}</td>
+        <td>{{c[4]}}</td>
     </tr>
     {% endfor %}
 
