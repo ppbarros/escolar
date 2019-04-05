@@ -20,9 +20,25 @@
     {% for c in disciplinas %}
     <tr>
         <td><a href="/detalhar/{{c[0]}}">{{c[1]}}</a></td>
+
+        {% if c[2] %}
         <td>{{c[2]}}</td>
+        {% else %}
+        <td></td>
+        {% endif %}
+
+        {% if c[3] %}
         <td>{{c[3]}}</td>
+        {% else %}
+        <td></td>
+        {% endif %}
+
+        {% if c[4] %}
         <td>{{c[4]}}</td>
+        {% else %}
+        <td></td>
+        {% endif %}
+
     </tr>
     {% endfor %}
 
