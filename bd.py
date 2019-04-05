@@ -8,7 +8,8 @@ def get_idlogin(cursor, login, senha):
 
 
 def get_notas(cursor, idlogin):
-    cursor.execute(f'select notas.iddisciplinas, disciplinas.nome, notas.nota1, notas.nota2, notas.nota3 from notas join disciplinas on notas.iddisciplinas = disciplinas.iddisciplinas  where notas.idlogin = {idlogin};')
+    cursor.execute(f'select notas.iddisciplinas, disciplinas.nome, notas.nota1, notas.nota2, notas.nota3 from notas, disciplinas where idlogin = {idlogin} and notas.iddisciplinas = disciplinas.iddisciplinas;')
+    ## outra opção  "select notas.iddisciplinas, disciplinas.nome, notas.nota1, notas.nota2, notas.nota3 from notas join disciplinas on notas.iddisciplinas = disciplinas.iddisciplinas  where notas.idlogin = {idlogin};"
     disciplinas = cursor.fetchall()
     cursor.close()
     return disciplinas
